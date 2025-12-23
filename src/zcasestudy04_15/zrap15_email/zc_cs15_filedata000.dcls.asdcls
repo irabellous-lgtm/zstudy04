@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZC_CS15_FILEDATA000'
+@MappingRole: true
+define role ZC_CS15_FILEDATA000 {
+  grant select on ZC_CS15_FILEDATA000
+  where INHERITING CONDITIONS FROM ENTITY ZR_CS15_FILEDATA REPLACING { ROOT WITH _BaseEntity };
+}

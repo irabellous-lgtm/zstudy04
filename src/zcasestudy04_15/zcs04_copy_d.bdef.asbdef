@@ -1,0 +1,20 @@
+managed implementation in class zbp_cs04_copy_d unique;
+strict ( 2 );
+
+define behavior for ZCS04_COPY_d //alias <alias_name>
+persistent table zcs04_copy
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+
+  field ( mandatory ) email;
+
+  validation validate_email on save { field Email; }
+  determination fill_memo_from_email on modify { field Email; }
+
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) Company, Street, Postcode, City;
+}

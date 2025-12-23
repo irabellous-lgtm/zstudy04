@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZC_CS04_EXCEPTION'
+@MappingRole: true
+define role ZC_CS04_EXCEPTION {
+  grant select on ZC_CS04_EXCEPTION
+  where INHERITING CONDITIONS FROM ENTITY ZR_CS04_EXCEPTION REPLACING { ROOT WITH _BaseEntity };
+}

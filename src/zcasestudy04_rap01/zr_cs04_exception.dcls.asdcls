@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_CS04_EXCEPTION'
+@MappingRole: true
+define role ZR_CS04_EXCEPTION {
+  grant select on ZR_CS04_EXCEPTION
+  where TRUE;
+}

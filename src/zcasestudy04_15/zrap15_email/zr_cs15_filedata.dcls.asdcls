@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_CS15_FILEDATA'
+@MappingRole: true
+define role ZR_CS15_FILEDATA {
+  grant select on ZR_CS15_FILEDATA
+  where TRUE;
+}

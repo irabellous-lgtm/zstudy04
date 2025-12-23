@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_CS15_FILEDATA000'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_CS15_FILEDATA000'
+  }
+}
+define service ZUI_ZCS15_FILEDATA_O4 provider contracts odata_v4_ui {
+  expose ZC_CS15_FILEDATA000;
+}

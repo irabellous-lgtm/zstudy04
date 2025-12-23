@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_NROB" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <ATTRIBUTES>
+    <OBJECT>Z17_NURANG</OBJECT>
+    <DOMLEN>ZD17_CUSTOMERID</DOMLEN>
+    <PERCENTAGE>10.0</PERCENTAGE>
+    <NONRSWAP>X</NONRSWAP>
+   </ATTRIBUTES>
+   <TEXT>
+    <LANGU>E</LANGU>
+    <OBJECT>Z17_NURANG</OBJECT>
+    <TXT>Test Number Range</TXT>
+    <TXTSHORT>Test Number Range</TXTSHORT>
+   </TEXT>
+  </asx:values>
+ </asx:abap>
+</abapGit>

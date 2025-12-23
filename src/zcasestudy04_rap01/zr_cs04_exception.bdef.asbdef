@@ -1,0 +1,51 @@
+managed implementation in class ZBP_R_CS04_EXCEPTION unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_CS04_EXCEPTION alias ZrCs04Exception
+persistent table ZCS04_EXCEPTION
+extensible
+draft table ZCS04_EXCPTION_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( readonly )
+   ExcID,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( numbering : managed )
+   ExcID;
+
+
+//  create;
+//  update;
+//  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZCS04_EXCEPTION corresponding extensible
+  {
+    ExcID = exc_id;
+    Infotype = infotype;
+    InfoMessage = info_message;
+    ExceptionType = exception_type;
+    Company = company;
+    LogDate = log_date;
+    LogTim = log_tim;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+
+}

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_ENHO" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <TOOL>BADI_IMPL</TOOL>
+   <SHORTTEXT>Test Impliment Badi2</SHORTTEXT>
+   <SPOT_NAME>ZCS4_17_TESTBADI2</SPOT_NAME>
+   <IMPL>
+    <ENH_BADI_IMPL_DATA>
+     <SPOT_NAME>ZCS4_17_TESTBADI2</SPOT_NAME>
+     <BADI_NAME>ZCS4_17_TESTBADI2</BADI_NAME>
+     <IMPL_NAME>ZCS_17_TEST_IMPLIMENTBADI2</IMPL_NAME>
+     <IMPL_CLASS>ZCL_17_BADI_TESTBADI2</IMPL_CLASS>
+     <LOCKED_IN_CUSTOMIZING>X</LOCKED_IN_CUSTOMIZING>
+    </ENH_BADI_IMPL_DATA>
+   </IMPL>
+  </asx:values>
+ </asx:abap>
+</abapGit>
