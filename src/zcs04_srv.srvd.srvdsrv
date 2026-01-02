@@ -1,0 +1,5 @@
+@EndUserText.label: 'service definition customers custorders'
+define service ZCS04_SRV {
+  expose zcs04_Customers_r;
+  expose zcs04_Custorders_r;
+}

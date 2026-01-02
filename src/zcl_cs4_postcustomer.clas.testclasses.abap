@@ -1,10 +1,10 @@
 *"* use this source file for your ABAP unit test classes
-class ltcl_test_email definition final for testing
-  duration short
-  risk level harmless.
+CLASS ltcl_test_email DEFINITION FINAL FOR TESTING
+  DURATION SHORT
+  RISK LEVEL HARMLESS.
 
-  private section.
-   DATA: lt_file        TYPE TABLE OF zcs04_filedata,
+  PRIVATE SECTION.
+    DATA: lt_file        TYPE TABLE OF zcs04_filedata,
           ls_source      TYPE zcs04_filedata,
           I_CheckMessage TYPE char256,
           I_checkFlag    TYPE abap_bool,
@@ -21,22 +21,25 @@ class ltcl_test_email definition final for testing
 ENDCLASS.
 
 
-class ltcl_test_email implementation.
+CLASS ltcl_test_email IMPLEMENTATION.
 
   METHOD success_test_1.
 
     CLEAR lt_file.
+    DATA(lo_CheckCustomer) = NEW zcl_cs4_importcustomer( ).
     APPEND VALUE #( cuid ='1'  email = 'hans.hansen@web.de' ) TO lt_file.
 
     LOOP AT lt_file INTO ls_source.
 
-      GET BADI My_badi.
-      CALL BADI My_badi->check_emailvalidation
-        EXPORTING
-          i_customer = ls_source
-        CHANGING
-          e_message  = i_checkmessage
-          e_result   = i_checkflag.
+      lo_CheckCustomer->check_emailvalidation(
+              EXPORTING
+                i_customer = ls_source
+                i_keyfield = CONV char100( ls_source-cuid )
+              CHANGING
+                new_email  = ls_source-email
+                e_message  = i_checkmessage
+                e_result   = i_checkflag
+            ).
       IF i_checkflag = abap_false.
         "insert into table exception i_checkmessage
         ls_source-memo = i_checkmessage.
@@ -50,17 +53,21 @@ class ltcl_test_email implementation.
   METHOD failure_test_1.
 
     CLEAR lt_file.
+    DATA(lo_CheckCustomer) = NEW zcl_cs4_importcustomer( ).
+
     APPEND VALUE #( cuid ='1'  email = 'peter*petersen@gmx.de' ) TO lt_file.
 
     LOOP AT lt_file INTO ls_source.
 
-      GET BADI My_badi.
-      CALL BADI My_badi->check_emailvalidation
-        EXPORTING
-          i_customer = ls_source
-        CHANGING
-          e_message  = i_checkmessage
-          e_result   = i_checkflag.
+      lo_CheckCustomer->check_emailvalidation(
+              EXPORTING
+                i_customer = ls_source
+                i_keyfield = CONV char100( ls_source-cuid )
+              CHANGING
+                new_email  = ls_source-email
+                e_message  = i_checkmessage
+                e_result   = i_checkflag
+            ).
       IF i_checkflag = abap_false.
         "insert into table exception i_checkmessage
         ls_source-memo = i_checkmessage.
@@ -74,17 +81,21 @@ class ltcl_test_email implementation.
   METHOD failure_test_2.
 
     CLEAR lt_file.
+    DATA(lo_CheckCustomer) = NEW zcl_cs4_importcustomer( ).
+
     APPEND VALUE #( cuid ='3'  email = 'peter.petersen@gmx.d' ) TO lt_file.
 
     LOOP AT lt_file INTO ls_source.
 
-      GET BADI My_badi.
-      CALL BADI My_badi->check_emailvalidation
+      lo_CheckCustomer->check_emailvalidation(
         EXPORTING
           i_customer = ls_source
+          i_keyfield = CONV char100( ls_source-cuid )
         CHANGING
+          new_email  = ls_source-email
           e_message  = i_checkmessage
-          e_result   = i_checkflag.
+          e_result   = i_checkflag
+      ).
       IF i_checkflag = abap_false.
         "insert into table exception i_checkmessage
         ls_source-memo = i_checkmessage.
@@ -98,17 +109,21 @@ class ltcl_test_email implementation.
   METHOD failure_test_3.
 
     CLEAR lt_file.
+    DATA(lo_CheckCustomer) = NEW zcl_cs4_importcustomer( ).
+
     APPEND VALUE #( cuid ='1'  email = 'peter.petersen.gmx.de' ) TO lt_file.
 
     LOOP AT lt_file INTO ls_source.
 
-      GET BADI My_badi.
-      CALL BADI My_badi->check_emailvalidation
+      lo_CheckCustomer->check_emailvalidation(
         EXPORTING
           i_customer = ls_source
+          i_keyfield = CONV char100( ls_source-cuid )
         CHANGING
+          new_email  = ls_source-email
           e_message  = i_checkmessage
-          e_result   = i_checkflag.
+          e_result   = i_checkflag
+      ).
       IF i_checkflag = abap_false.
         "insert into table exception i_checkmessage
         ls_source-memo = i_checkmessage.
@@ -122,17 +137,21 @@ class ltcl_test_email implementation.
   METHOD success_test_2.
 
     CLEAR lt_file.
+    DATA(lo_CheckCustomer) = NEW zcl_cs4_importcustomer( ).
+
     APPEND VALUE #( cuid ='13'  email = 'karl.carlsen@carlsen.fr' ) TO lt_file.
 
     LOOP AT lt_file INTO ls_source.
 
-      GET BADI My_badi.
-      CALL BADI My_badi->check_emailvalidation
-        EXPORTING
-          i_customer = ls_source
-        CHANGING
-          e_message  = i_checkmessage
-          e_result   = i_checkflag.
+      lo_CheckCustomer->check_emailvalidation(
+         EXPORTING
+           i_customer = ls_source
+           i_keyfield = CONV char100( ls_source-cuid )
+         CHANGING
+           new_email  = ls_source-email
+           e_message  = i_checkmessage
+           e_result   = i_checkflag
+       ).
       IF i_checkflag = abap_false.
         "insert into table exception i_checkmessage
         ls_source-memo = i_checkmessage.
@@ -146,17 +165,21 @@ class ltcl_test_email implementation.
   METHOD success_test_3.
 
     CLEAR lt_file.
+    DATA(lo_CheckCustomer) = NEW zcl_cs4_importcustomer( ).
+
     APPEND VALUE #( cuid =' 17 '  email = 'peter.petersen@gmx.de' ) TO lt_file.
 
     LOOP AT lt_file INTO ls_source.
 
-      GET BADI My_badi.
-      CALL BADI My_badi->check_emailvalidation
+      lo_CheckCustomer->check_emailvalidation(
         EXPORTING
           i_customer = ls_source
+          i_keyfield = CONV char100( ls_source-cuid )
         CHANGING
+          new_email  = ls_source-email
           e_message  = i_checkmessage
-          e_result   = i_checkflag.
+          e_result   = i_checkflag
+      ).
       IF i_checkflag = abap_false.
         "insert into table exception i_checkmessage
         ls_source-memo = i_checkmessage.
