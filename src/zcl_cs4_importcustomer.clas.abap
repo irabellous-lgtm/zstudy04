@@ -11,7 +11,16 @@ CLASS zcl_cs4_importcustomer DEFINITION
       Post_Exception
         CHANGING
           c_Result    TYPE abap_bool
-          c_Exception TYPE zcs04_exception
+          c_Exception TYPE zcs04_exception,
+      Get_CustomerId
+        IMPORTING
+          i_Object    TYPE  char10
+        EXPORTING
+          e_Result    TYPE abap_bool
+        RETURNING VALUE(CusomerID) TYPE  zcustomerid04
+        RAISING
+          cx_static_check
+
         .
     METHODS : check_fields
       IMPORTING
@@ -31,15 +40,6 @@ CLASS zcl_cs4_importcustomer DEFINITION
           e_ID       TYPE  zcustomerid04
         ,
 
-      Get_CustomerId
-        IMPORTING
-          i_Object    TYPE  char10
-        EXPORTING
-          e_CusomerID TYPE  zcustomerid04
-          e_Result    TYPE abap_bool
-        RAISING
-          cx_static_check
-        ,
       Check_EmailValidation
         IMPORTING
           i_customer TYPE zcs04_filedata
@@ -322,11 +322,11 @@ CLASS zcl_cs4_importcustomer IMPLEMENTATION.
       IMPORTING
         number = DATA(l_number)
     ).
-    e_CusomerID = l_number.
+    CusomerID = l_number.
     IF strlen( l_number ) < 6.
-      e_CusomerID = l_number.
+      CusomerID = l_number.
     ELSE.
-      e_CusomerID = substring(
+      CusomerID = substring(
                    val = l_number
                    off = 14
                    len = 6 ).

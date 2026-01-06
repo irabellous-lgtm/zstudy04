@@ -1,0 +1,4 @@
+@EndUserText.label: 'Customer Service'
+define service ZSD17_Customer {
+  expose ZCDSPRJ17_Customer;
+}

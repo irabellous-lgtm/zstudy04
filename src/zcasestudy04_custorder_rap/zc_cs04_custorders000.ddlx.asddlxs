@@ -3,7 +3,7 @@
 @UI.headerInfo.title.value: 'Customerid'
 @UI.headerInfo.description.type: #STANDARD
 @UI.headerInfo.description.value: 'Customerid'
-annotate view ZC_CS17_CUSTORDERS with
+annotate view ZC_CS04_CUSTORDERS000 with
 {
   @UI.facet: [ {
     label: 'General Information', 

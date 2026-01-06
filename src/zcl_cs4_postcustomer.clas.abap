@@ -62,11 +62,10 @@ CLASS zcl_cs4_postcustomer IMPLEMENTATION.
               ls_customer-customerid = i_DuplicateID.
             ELSE.
               TRY.
-                lo_CheckCustomer->Get_CustomerId(
+                ls_customer-customerid = lo_CheckCustomer->Get_CustomerId(
                  EXPORTING
                    i_object    = 'ZCS4_NUR'
                  IMPORTING
-                   e_cusomerid = ls_customer-customerid
                    e_result    = i_checkflag
                  ).
               CATCH cx_static_check INTO DATA(lx_GetNum_err).

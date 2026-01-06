@@ -1,0 +1,27 @@
+managed implementation in class zbp_cds17_customer unique;
+strict ( 2 );
+
+define behavior for ZCDS17_Customer //alias <alias_name>
+persistent table zcs17_customers
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) Customerid;
+  association _Customerorders { create; }
+}
+
+define behavior for ZCDS17_Customerorders //alias <alias_name>
+persistent table zcs17_custorders
+lock dependent by _Customer
+authorization dependent by _Customer
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Customerid, Orderid;
+  association _Customer;
+}
